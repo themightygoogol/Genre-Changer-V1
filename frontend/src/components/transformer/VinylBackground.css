@@ -1,0 +1,65 @@
+.vinyl-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.vinyl-background-disc {
+  position: absolute;
+  width: max(130vw, 150vh);
+  aspect-ratio: 1;
+  left: 51.5%;
+  top: 75%;
+  border-radius: 50%;
+  opacity: 0.36;
+  background:
+    conic-gradient(
+      from 35deg,
+      transparent 0deg 45deg,
+      rgba(255, 255, 255, 0.07) 65deg,
+      transparent 95deg 225deg,
+      rgba(255, 255, 255, 0.035) 245deg,
+      transparent 275deg
+    ),
+    repeating-radial-gradient(
+      circle,
+      #141417 0 8px,
+      #09090b 8.5px 9px,
+      #141417 9.5px 14px
+    ),
+    #09090b;
+  border: 1px solid #303037;
+  transform: translate(-50%, -50%);
+  animation: vinyl-background-turn 100s linear infinite;
+}
+.vinyl-background-label {
+  position: absolute;
+  inset: 42%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--genre-rgb, var(--accent-rgb)), 0.12) 0%,
+    #17171b 58%,
+    #101013 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.vinyl-background-label::after {
+  content: "";
+  position: absolute;
+  inset: 48%;
+  border-radius: 50%;
+  border: 1px solid #29292d;
+  background: radial-gradient(circle at 35% 30%, #f3f3f5, #888891 45%, #29292d);
+}
+@keyframes vinyl-background-turn {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-background-disc {
+    animation: none;
+  }
+}

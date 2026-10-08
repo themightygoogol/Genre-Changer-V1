@@ -1,0 +1,81 @@
+:is(.machine-screw, .deck-screw, .screen-chassis-screw) {
+  --hardware-screw-size: 9px;
+  position: absolute;
+  width: var(--hardware-screw-size);
+  height: var(--hardware-screw-size);
+  border-radius: 50%;
+  background: #85858c;
+  border: 1px solid #3b3b40;
+  box-shadow:
+    inset 0 calc(var(--hardware-screw-size) / 9) 0 rgba(255, 255, 255, 0.3),
+    0 calc(var(--hardware-screw-size) / 9) calc(var(--hardware-screw-size) / 3)
+      rgba(0, 0, 0, 0.8);
+}
+:is(.machine-screw, .deck-screw, .screen-chassis-screw)::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--hardware-screw-size) / 9);
+  right: calc(var(--hardware-screw-size) / 9);
+  top: calc(var(--hardware-screw-size) / 3);
+  height: calc(var(--hardware-screw-size) / 9);
+  background: #343438;
+}
+:is(.machine-screw, .deck-screw, .screen-chassis-screw)::after {
+  content: none;
+}
+.screen-chassis-screw {
+  --hardware-screw-size: 9px;
+}
+.details-panel .machine-screw,
+.playback-panel .machine-screw {
+  --hardware-screw-size: 8px;
+}
+
+.screw-tl {
+  top: 18px;
+  left: 18px;
+}
+
+.screw-tr {
+  top: 18px;
+  right: 18px;
+}
+
+.screw-bl {
+  bottom: 18px;
+  left: 18px;
+}
+
+.screw-br {
+  bottom: 18px;
+  right: 18px;
+}
+
+.screw-top-left {
+  top: 17px;
+  left: 17px;
+}
+
+.screw-top-right {
+  top: 17px;
+  right: 17px;
+}
+
+.screw-bottom-left {
+  bottom: 17px;
+  left: 17px;
+}
+
+.screw-bottom-right {
+  bottom: 17px;
+  right: 17px;
+}
+.screen-chassis-screw {
+  left: 17px;
+}
+.screen-screw-tl {
+  top: 17px;
+}
+.screen-screw-bl {
+  bottom: 17px;
+}

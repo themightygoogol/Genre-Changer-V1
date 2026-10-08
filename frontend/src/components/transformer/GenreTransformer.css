@@ -1,0 +1,12 @@
+.genre-transformer {
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  background: #080b10;
+}
+.genre-transformer > .workspace-stage,
+.genre-transformer > .midi-library,
+.genre-transformer > .drill-page-title {
+  z-index: 1;
+}

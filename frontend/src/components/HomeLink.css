@@ -1,0 +1,88 @@
+.vinyl-home-link {
+  position: fixed;
+  top: 27px;
+  right: 30px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  color: #a3ebff;
+  background: #101820;
+  border: 1px solid #27414e;
+  border-radius: 7px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+.vinyl-home-link:hover {
+  border-color: #58d8ff;
+}
+.vinyl-home-link:focus-visible {
+  outline: 2px solid #58d8ff;
+  outline-offset: 3px;
+}
+html.vinyl-return-transition::view-transition-group(root) {
+  animation: none;
+}
+html.vinyl-return-transition::view-transition-old(root),
+html.vinyl-return-transition::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation-duration: 1000ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+html.vinyl-return-transition::view-transition-old(root) {
+  z-index: 2;
+  transform-origin: 50% 50%;
+  animation-name: vinyl-workspace-recede;
+}
+html.vinyl-return-transition::view-transition-new(root) {
+  z-index: 1;
+  transform-origin: var(--vinyl-return-x, 60vw) var(--vinyl-return-y, 50vh);
+  animation-name: vinyl-deck-reveal;
+}
+@keyframes vinyl-workspace-recede {
+  0% {
+    opacity: 1;
+    transform: none;
+    clip-path: circle(100% at 50% 50%);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(var(--vinyl-return-x, 60vw) - 50vw),
+        calc(var(--vinyl-return-y, 50vh) - 50vh)
+      )
+      scale(0.16);
+    clip-path: circle(42% at 50% 50%);
+  }
+}
+@keyframes vinyl-deck-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 700px) {
+  .vinyl-home-link {
+    top: 18px;
+    right: 12px;
+    font-size: 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.vinyl-return-transition::view-transition-old(root),
+  html.vinyl-return-transition::view-transition-new(root) {
+    animation: none;
+  }
+}

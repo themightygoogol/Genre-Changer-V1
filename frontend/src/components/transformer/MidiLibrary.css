@@ -1,0 +1,710 @@
+.midi-library {
+  position: absolute;
+
+  top: 64px;
+  bottom: 18px;
+  left: var(--library-gutter);
+
+  z-index: 70;
+
+  width: var(--library-width);
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 24px 22px;
+
+  border-radius: 20px;
+  background: #09090b;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  overflow: visible;
+  isolation: isolate;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+.midi-library::before {
+  content: none;
+}
+
+.midi-library::after {
+  content: none;
+}
+
+.midi-library > * {
+  position: relative;
+  z-index: 1;
+}
+
+.midi-library-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.midi-library-kicker {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: rgba(var(--accent-rgb), 0.76);
+
+  font-size: 0.48rem;
+  font-weight: 850;
+  letter-spacing: 0.2em;
+}
+
+.midi-library-header h2 {
+  margin: 0;
+
+  color: #f4f4f6;
+
+  font-size: clamp(1.35rem, 1.55vw, 1.7rem);
+  font-weight: 720;
+
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.midi-library-led {
+  display: none;
+}
+
+.midi-library-import {
+  width: 100%;
+  min-height: 62px;
+
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 11px 13px;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.012)
+    ),
+    #0d0d10;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.midi-library-import:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(145, 105, 255, 0.4);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(145, 105, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    ),
+    #0d0d10;
+
+  box-shadow:
+    0 0 0 1px rgba(145, 105, 255, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.midi-library-import-plus {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+
+  color: var(--accent);
+
+  font-size: 1.05rem;
+  font-weight: 500;
+
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.midi-library-import strong,
+.midi-library-import small {
+  display: block;
+}
+
+.midi-library-import strong {
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 0.74rem;
+  font-weight: 720;
+}
+
+.midi-library-import small {
+  margin-top: 4px;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.58rem;
+}
+
+.midi-library-file-input {
+  display: none;
+}
+
+.midi-library-scroll {
+  min-height: 0;
+  flex: 1;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  margin-top: 22px;
+  padding-right: 6px;
+  padding-bottom: 18px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.midi-library-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.midi-library-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.midi-library-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.2);
+}
+
+.midi-library-section + .midi-library-section {
+  margin-top: 28px;
+}
+
+.midi-library-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  text-align: center;
+}
+
+.midi-library-section-heading span,
+.midi-library-section-toggle > span:first-child {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.51rem;
+  font-weight: 850;
+
+  letter-spacing: 0.22em;
+}
+
+.midi-library-empty {
+  padding: 13px 12px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.065);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.midi-library-empty span,
+.midi-library-empty small {
+  display: block;
+}
+
+.midi-library-empty span {
+  color: #788698;
+
+  font-size: 0.63rem;
+}
+
+.midi-library-empty small {
+  margin-top: 4px;
+
+  color: #4e5b6c;
+
+  font-size: 0.54rem;
+  line-height: 1.35;
+}
+
+.user-midi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.user-midi-document {
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 4px 3px 8px;
+
+  border-radius: 10px;
+
+  cursor: grab;
+  user-select: none;
+
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.user-midi-document:hover .user-midi-sheet {
+  color: #ffffff;
+
+  border-color: rgba(var(--accent-rgb), 0.5);
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(var(--accent-rgb), 0.09),
+      rgba(255, 255, 255, 0.02)
+    ),
+    #101014;
+
+  box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.08);
+}
+
+.user-midi-document.selected {
+  background: rgba(var(--accent-rgb), 0.055);
+
+  box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0.15);
+}
+
+.user-midi-document.selected .user-midi-sheet {
+  color: #ffffff;
+
+  border-color: rgba(var(--accent-rgb), 0.72);
+
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.11);
+}
+
+.user-midi-document:active {
+  cursor: grabbing;
+  transform: translateY(-5px) rotate(-1.5deg) scale(1.015);
+}
+
+.user-midi-document.selected strong {
+  color: #ffffff;
+}
+
+.user-midi-delete {
+  position: absolute;
+
+  top: 4px;
+  right: 4px;
+
+  z-index: 4;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: rgba(220, 235, 242, 0.55);
+
+  background: rgba(10, 15, 21, 0.9);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 5px;
+
+  font-size: 1rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  transform: scale(0.8);
+
+  pointer-events: none;
+
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.user-midi-delete:hover {
+  color: var(--accent-strong);
+
+  border-color: rgba(var(--accent-rgb), 0.45);
+
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.18);
+}
+
+.user-midi-delete:focus-visible {
+  opacity: 1;
+
+  transform: scale(1);
+
+  pointer-events: auto;
+
+  outline: 1px solid var(--accent-strong);
+
+  outline-offset: 2px;
+}
+
+.user-midi-sheet {
+  position: relative;
+
+  width: 54px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+
+  color: rgba(255, 255, 255, 0.82);
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.018)
+    ),
+    #101014;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.user-midi-sheet span {
+  font-size: 0.57rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.user-midi-sheet i {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 14px;
+  height: 14px;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.user-midi-document strong {
+  width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 0.58rem;
+  font-weight: 650;
+
+  text-align: center;
+}
+
+.user-midi-document.selected strong {
+  color: #e0f7ff;
+}
+
+@media (max-width: 1180px) {
+  .midi-library {
+    padding: 20px 16px 18px;
+  }
+
+  .midi-library-import {
+    min-height: 52px;
+  }
+
+  .user-midi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .midi-library {
+    top: 82px;
+    left: 12px;
+    bottom: auto;
+
+    width: 188px;
+    height: calc(100dvh - 104px);
+
+    padding: 16px 12px;
+  }
+
+  .midi-library-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .midi-library-import {
+    grid-template-columns: 28px 1fr;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .midi-library-import-plus {
+    width: 28px;
+    height: 28px;
+  }
+
+  .midi-library-import small {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .midi-library {
+    position: relative;
+
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+
+    width: calc(100% - 24px);
+    height: auto;
+    max-height: 320px;
+
+    margin: 82px 12px 18px;
+  }
+
+  .midi-library-scroll {
+    max-height: 190px;
+  }
+
+  .user-midi-grid,
+  .sample-shelf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.midi-library-section-toggle {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0;
+
+  color: inherit;
+  background: transparent;
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+.midi-library-section-toggle > span:first-child {
+  color: #687587;
+
+  font-size: 0.51rem;
+  font-weight: 850;
+
+  letter-spacing: 0.19em;
+}
+
+.midi-library-section-chevron {
+  color: rgba(var(--accent-rgb), 0.72);
+
+  font-size: 0.85rem;
+  line-height: 1;
+
+  transform-origin: center;
+
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms ease;
+}
+
+.midi-library-section-toggle:hover .midi-library-section-chevron {
+  color: var(--accent);
+}
+
+.midi-library-samples.expanded .midi-library-section-chevron {
+  transform: rotate(180deg);
+}
+
+.midi-library-sample-collapse {
+  display: grid;
+
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+
+  transition:
+    grid-template-rows 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease;
+}
+
+.midi-library-sample-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.midi-library-samples.expanded .midi-library-sample-collapse {
+  grid-template-rows: 1fr;
+
+  opacity: 1;
+}
+
+.midi-library-samples.expanded .midi-library-sample-collapse-inner {
+  padding-top: 16px;
+}
+
+.midi-library {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.midi-library.external-drag-active {
+  border-color: rgba(var(--accent-rgb), 0.55);
+
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.12),
+    0 0 32px rgba(var(--accent-rgb), 0.08);
+}
+
+.midi-library-drop-feedback {
+  position: absolute;
+
+  inset: 12px;
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 14px;
+
+  background: rgba(9, 9, 11, 0.97);
+
+  border: 1px dashed rgba(var(--accent-rgb), 0.52);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 180ms ease;
+}
+
+.midi-library.external-drag-active .midi-library-drop-feedback {
+  opacity: 1;
+}
+
+.midi-library-drop-feedback strong {
+  color: var(--accent);
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.2em;
+}
+
+.midi-library-drop-feedback span {
+  color: #738092;
+
+  font-size: 0.7rem;
+}
+
+.user-midi-delete {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  width: 28px;
+  height: 28px;
+  color: #dcebf2;
+  background: #18222a;
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+.user-midi-document:focus-within {
+  border-color: var(--accent);
+}
+
+.user-midi-delete:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.user-midi-delete {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+.user-midi-document:hover .user-midi-delete,
+.user-midi-document:focus-within .user-midi-delete {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+@media (hover: none) {
+  .user-midi-document .user-midi-delete {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}

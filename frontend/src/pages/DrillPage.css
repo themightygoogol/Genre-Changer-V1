@@ -1,0 +1,116 @@
+.transform-page {
+  --library-width: clamp(210px, 18vw, 290px);
+  --library-gutter: clamp(14px, 2vw, 30px);
+  --workspace-gap: clamp(20px, 3vw, 44px);
+  position: fixed;
+  inset: 0;
+  isolation: isolate;
+  color: #f4f7fb;
+}
+.drill-page-title {
+  position: absolute;
+  top: 29px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  pointer-events: none;
+}
+.transform-page > .midi-library {
+  position: absolute;
+  top: 78px;
+  bottom: 22px;
+  left: var(--library-gutter);
+  width: var(--library-width);
+  height: auto;
+  max-height: none;
+  margin: 0;
+}
+.workspace-stage {
+  position: absolute;
+  top: 82px;
+  bottom: 26px;
+  left: calc(
+    var(--library-gutter) + var(--library-width) + var(--workspace-gap)
+  );
+  right: var(--workspace-gap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+.transform-machine-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.sample-drop-feedback {
+  display: none;
+}
+.sample-drag-active .machine-file-aperture {
+  filter: drop-shadow(0 0 16px rgba(var(--accent-rgb), 0.6));
+}
+.hardware-button {
+  min-height: 38px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #161b22;
+  color: var(--accent-strong);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.hardware-button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.hardware-button > i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6);
+}
+@media (max-width: 1100px) {
+  .transform-page {
+    --library-width: 190px;
+    --workspace-gap: 18px;
+  }
+}
+@media (max-width: 700px) {
+  .transform-page {
+    --library-width: 150px;
+    --library-gutter: 8px;
+    --workspace-gap: 10px;
+  }
+  .transform-page > .midi-library {
+    padding: 16px 10px;
+    top: 90px;
+    bottom: 12px;
+  }
+  .workspace-stage {
+    top: 90px;
+    bottom: 12px;
+  }
+  .drill-page-title {
+    top: 61px;
+    font-size: 0.58rem;
+  }
+  .midi-library-header h2 {
+    font-size: 1rem;
+  }
+  .user-midi-grid,
+  .sample-shelf {
+    grid-template-columns: 1fr;
+  }
+}

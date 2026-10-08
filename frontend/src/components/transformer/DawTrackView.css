@@ -1,0 +1,251 @@
+.daw-shell {
+  min-height: 0;
+  flex: 1;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 10px;
+
+  background: #08080b;
+
+  border: 1px solid #29292f;
+
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.72);
+}
+
+.daw-timeline {
+  display: grid;
+
+  grid-template-columns:
+    132px
+    minmax(0, 1fr);
+
+  min-height: 34px;
+
+  background: #0e0e12;
+
+  border-bottom: 1px solid #27272d;
+}
+
+.daw-track-spacer {
+  border-right: 1px solid #27272d;
+}
+
+.daw-timeline-ruler {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.daw-timeline-ruler span {
+  position: absolute;
+
+  bottom: 7px;
+
+  transform: translateX(-50%);
+
+  color: #62626c;
+
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  font-size: 0.48rem;
+
+  letter-spacing: 0.04em;
+}
+
+.daw-lanes {
+  min-height: 0;
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #303038 transparent;
+}
+
+.daw-lanes::-webkit-scrollbar {
+  width: 5px;
+}
+
+.daw-lanes::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.daw-lanes::-webkit-scrollbar-thumb {
+  background: #303038;
+
+  border-radius: 999px;
+}
+
+.daw-row {
+  min-height: 58px;
+
+  display: grid;
+
+  grid-template-columns:
+    132px
+    minmax(0, 1fr);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+}
+
+.daw-row:last-child {
+  border-bottom: 0;
+}
+
+.daw-track-label {
+  min-width: 0;
+
+  padding: 10px 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  border-right: 1px solid #27272d;
+
+  background: #101014;
+}
+
+.daw-track-label strong,
+.daw-track-label span {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.daw-track-label strong {
+  color: #d5d5db;
+
+  font-size: 0.64rem;
+
+  font-weight: 650;
+}
+
+.daw-track-label span {
+  margin-top: 4px;
+
+  color: #63636d;
+
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  font-size: 0.49rem;
+}
+
+.daw-lane {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #09090c;
+}
+
+.daw-row:nth-child(even) .daw-lane {
+  background: #0a0a0d;
+}
+
+.daw-grid-line {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  pointer-events: none;
+}
+
+.daw-note {
+  position: absolute;
+
+  top: 17px;
+
+  height: 23px;
+
+  min-width: 2px;
+
+  border-radius: 2px;
+
+  background: var(--track-color, var(--accent));
+
+  border: 1px solid
+    color-mix(in srgb, var(--track-color, var(--accent)) 65%, white);
+
+  box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.07);
+}
+
+.daw-playhead {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  background: var(--accent-strong);
+
+  box-shadow:
+    0 0 5px rgba(var(--accent-rgb), 0.65),
+    0 0 12px rgba(var(--accent-rgb), 0.18);
+}
+
+.daw-playhead span {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 5px;
+  height: 5px;
+
+  transform: translate(-50%, -50%) rotate(45deg);
+
+  background: var(--accent-strong);
+}
+
+.daw-timeline-playhead {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  background: rgba(194, 173, 255, 0.76);
+}
+
+@media (max-width: 640px) {
+  .daw-timeline,
+  .daw-row {
+    grid-template-columns:
+      98px
+      minmax(0, 1fr);
+  }
+}
+.daw-track-label {
+  border-left: 3px solid var(--track-color, var(--accent));
+}
+.daw-row {
+  min-height: 52px;
+}
+.daw-track-label strong {
+  font-size: 0.6rem;
+}

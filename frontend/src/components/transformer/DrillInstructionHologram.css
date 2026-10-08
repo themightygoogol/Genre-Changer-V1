@@ -1,0 +1,245 @@
+.drill-instruction-hologram {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 4%;
+  z-index: 30;
+  width: 92%;
+  height: clamp(205px, 24vh, 260px);
+  padding-top: 24px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition:
+    opacity 360ms ease,
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.drill-instruction-hologram.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.instruction-projection {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+  overflow: visible;
+}
+
+.instruction-kicker {
+  display: block;
+
+  margin-bottom: clamp(8px, 1vh, 12px);
+
+  color: var(--accent-strong);
+
+  font-size: clamp(0.66rem, 0.72vw, 0.82rem);
+
+  font-weight: 850;
+
+  letter-spacing: 0.32em;
+
+  white-space: nowrap;
+
+  opacity: 0.92;
+
+  text-shadow:
+    0 0 7px rgba(var(--accent-rgb), 0.55),
+    0 0 18px rgba(var(--accent-rgb), 0.2);
+}
+
+.instruction-projection strong {
+  position: relative;
+  display: block;
+  width: max-content;
+
+  color: var(--accent-strong);
+
+  font-size: clamp(3rem, 4vw, 4.9rem);
+  font-weight: 720;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+
+  -webkit-font-smoothing: antialiased;
+
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.85),
+    0 0 7px rgba(var(--accent-rgb), 0.9),
+    0 0 18px rgba(var(--accent-rgb), 0.5),
+    0 0 42px rgba(var(--accent-rgb), 0.22);
+
+  animation: drill-hologram-flicker 4.2s linear infinite;
+}
+
+.instruction-projection strong::before {
+  content: attr(data-text);
+
+  position: absolute;
+
+  inset: 0;
+
+  color: rgba(var(--accent-rgb), 0.2);
+
+  transform: translateX(1px);
+
+  filter: blur(1.25px);
+
+  pointer-events: none;
+}
+
+.instruction-projection strong::after {
+  content: none;
+}
+
+.instruction-projection p {
+  margin: clamp(11px, 1.2vh, 15px) 0 0;
+
+  color: rgba(210, 233, 241, 0.72);
+
+  font-size: clamp(0.72rem, 0.78vw, 0.86rem);
+
+  line-height: 1.55;
+
+  letter-spacing: 0.01em;
+}
+
+.instruction-beam {
+  position: absolute;
+  left: 50%;
+  top: clamp(104px, 11vh, 126px);
+
+  z-index: 1;
+
+  width: 44%;
+  height: calc(100% - 18px);
+
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  clip-path: polygon(17% 0, 83% 0, 57% 100%, 43% 100%);
+
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--accent-rgb), 0.13),
+    rgba(var(--accent-rgb), 0.055),
+    rgba(var(--accent-rgb), 0.01)
+  );
+
+  filter: blur(1px);
+
+  animation: drill-beam-pulse 2.7s ease-in-out infinite;
+}
+
+.instruction-scanline {
+  position: absolute;
+  left: 50%;
+  top: clamp(18px, 2vh, 25px);
+
+  z-index: 4;
+
+  width: 90%;
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--accent-rgb), 0.75),
+    transparent
+  );
+
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.55);
+
+  animation: drill-hologram-scan 3s ease-in-out infinite;
+}
+
+@keyframes drill-beam-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+
+    transform: translateX(-50%) scaleX(0.97);
+  }
+
+  50% {
+    opacity: 0.43;
+
+    transform: translateX(-50%) scaleX(1.03);
+  }
+}
+
+@keyframes drill-hologram-scan {
+  0% {
+    transform: translateX(-50%) translateY(-20px);
+
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.6;
+  }
+
+  80% {
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(74px);
+
+    opacity: 0;
+  }
+}
+
+@keyframes drill-hologram-flicker {
+  0%,
+  91%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 0.72;
+  }
+
+  93% {
+    opacity: 0.96;
+  }
+
+  96% {
+    opacity: 0.82;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instruction-projection strong,
+  .instruction-beam,
+  .instruction-scanline {
+    animation: none;
+  }
+}
+.drill-instruction-hologram {
+  container-type: inline-size;
+}
+.instruction-projection strong {
+  font-size: clamp(1.7rem, 10cqw, 4.9rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drill-instruction-hologram {
+    transition: none;
+  }
+}

@@ -1,0 +1,10 @@
+.home-page .vinyl-selector .genre-hologram:not(.locked):not(.tuning) {
+  visibility: visible;
+  opacity: 1;
+}
+.home-page .vinyl-selector .genre-hologram.tuning,
+.home-page .vinyl-selector:has(.vinyl-disc.spinning) .genre-hologram,
+.home-page .vinyl-selector:has(.vinyl-disc.spinning) .venue-prompt-beam {
+  visibility: hidden;
+  opacity: 0;
+}

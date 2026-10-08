@@ -1,0 +1,18 @@
+.home-page.home-page.home-page {
+  background-color: #08090c;
+  background-image:
+    radial-gradient(
+      ellipse at 50% 48%,
+      transparent 25%,
+      rgba(2, 4, 8, 0.58) 100%
+    ),
+    linear-gradient(rgba(4, 7, 12, 0.35), rgba(4, 7, 12, 0.35)),
+    url("../assets/home-dark-walnut.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home-page.home-page.home-page::before {
+  background: none;
+  opacity: 0;
+}
